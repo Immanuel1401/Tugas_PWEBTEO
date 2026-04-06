@@ -1,0 +1,712 @@
+/* ── 1. CUSTOM PROPERTIES ─────────────────────────────────── */
+:root {
+    --green-900: #1B5E20;
+    --green-700: #2E7D32;
+    --green-500: #4CAF50;
+    --green-100: #E8F5E9;
+    --green-50:  #F1F8E9;
+
+    --ink:       #0A1628;
+    --body:      #2D3748;
+    --muted:     #718096;
+    --faint:     #A0AEC0;
+
+    --surface:   #FFFFFF;
+    --bg:        #F7F9F7;
+    --border:    #E2E8E2;
+    --border-lt: #EEF2EE;
+
+    --sh-sm: 0 1px 4px rgba(0,0,0,0.06);
+    --sh-md: 0 4px 20px rgba(46,125,50,0.10);
+    --sh-lg: 0 8px 40px rgba(46,125,50,0.16);
+
+    --r-sm:  8px;
+    --r-md:  14px;
+    --r-lg:  22px;
+    --r-xl:  32px;
+
+    --ease:  cubic-bezier(0.4,0,0.2,1);
+    --dur:   0.28s;
+
+    /* Layout sizes — perubahan di media query otomatis merata */
+    --topbar-h:   70px;
+    --sidebar-w:  256px;
+}
+
+/* ── 2. RESET ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Epilogue', sans-serif;
+    background: var(--bg);
+    color: var(--body);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── 3. KEYFRAME ANIMATIONS ───────────────────────────────── */
+
+/* Topbar masuk dari atas */
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* Sidebar masuk dari kiri */
+@keyframes slideRight {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* Konten naik dari bawah (dipicu JS via .visible) */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Baris tabel masuk dari kiri */
+@keyframes rowSlide {
+    from { opacity: 0; transform: translateX(-18px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Efek kilap (shimmer) pada progress bar Eco Score */
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+}
+
+/* Notifikasi: ring melebar lalu menghilang */
+@keyframes pulseRing {
+    0%   { transform: scale(1);   opacity: 0.8; }
+    80%  { transform: scale(2.4); opacity: 0; }
+    100% { transform: scale(1);   opacity: 0; }
+}
+
+/* Ikon stat card mengambang naik-turun */
+@keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+}
+
+/* Blink kursor bar pencarian */
+@keyframes caretBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ── 4. ANIMATION UTILITY ─────────────────────────────────── */
+.anim-slide-down  { animation: slideDown  0.42s var(--ease) both; }
+.anim-slide-right { animation: slideRight 0.42s 0.08s var(--ease) both; }
+
+/* fade-up: state awal, class .visible ditambahkan JS */
+.anim-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s var(--ease) var(--d, 0s),
+                transform 0.5s var(--ease) var(--d, 0s);
+}
+.anim-fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* baris tabel */
+.trow-anim { opacity: 0; transform: translateX(-18px); }
+.trow-anim.trow-visible { animation: rowSlide 0.38s var(--ease) both; }
+
+/* ── 5. TOPBAR ────────────────────────────────────────────── */
+/*
+   FLEXBOX: display:flex + justify-content:space-between
+   Tiga bagian (kiri, tengah, kanan) didistribusikan secara
+   merata sepanjang sumbu horizontal.
+*/
+.topbar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--topbar-h);
+    background: var(--green-700);
+    z-index: 1000;
+    box-shadow: var(--sh-md);
+
+    display: flex;                      /* ← FLEXBOX */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    gap: 20px;
+}
+
+/* Brand / Logo */
+.brand {
+    display: flex;          /* ← FLEXBOX: ikon + teks sejajar */
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+.brand-icon {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.18);
+    border-radius: var(--r-sm);
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--dur) var(--ease);
+}
+.brand:hover .brand-icon { background: rgba(255,255,255,0.30); }
+.brand-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+/* Search bar (tengah, flex-grow) */
+.topbar-center {
+    flex: 1;                /* ← FLEXBOX: ambil ruang sisa */
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+}
+.search-box {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.search-box i {
+    position: absolute; left: 14px;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: color var(--dur);
+}
+.search-box input {
+    width: 100%;
+    padding: 9px 16px 9px 40px;
+    background: rgba(255,255,255,0.14);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: var(--r-md);
+    color: #fff;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.875rem;
+    outline: none;
+    transition: background var(--dur), border-color var(--dur), box-shadow var(--dur);
+}
+.search-box input::placeholder { color: rgba(255,255,255,0.55); }
+.search-box input:focus {
+    background: rgba(255,255,255,0.22);
+    border-color: rgba(255,255,255,0.6);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.12);
+}
+.search-box input:focus + i,
+.search-box:focus-within i { color: #fff; }
+
+/* Action buttons kanan */
+.topbar-right {
+    display: flex;          /* ← FLEXBOX */
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+.icon-btn {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.14);
+    border: 1.5px solid rgba(255,255,255,0.22);
+    border-radius: var(--r-sm);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--dur), transform var(--dur);
+}
+.icon-btn:hover { background: rgba(255,255,255,0.26); transform: translateY(-1px); }
+.pos-rel { position: relative; }
+
+/* Pulse dot (notifikasi) */
+.pulse-dot {
+    width: 8px; height: 8px;
+    background: #FF5252;
+    border-radius: 50%;
+    border: 2px solid var(--green-700);
+    position: absolute; top: 5px; right: 5px;
+}
+.pulse-dot::before {
+    content: '';
+    position: absolute; inset: -2px;
+    border-radius: 50%;
+    background: rgba(255,82,82,0.45);
+    animation: pulseRing 2s ease-out infinite;
+}
+
+/* Cart badge */
+.badge-count {
+    position: absolute; top: -5px; right: -5px;
+    width: 17px; height: 17px;
+    background: #FFD600;
+    color: var(--ink);
+    font-size: 0.6rem; font-weight: 800;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--green-700);
+}
+
+/* User chip */
+.user-chip {
+    display: flex;          /* ← FLEXBOX */
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.user-avatar {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.22);
+    border: 2px solid rgba(255,255,255,0.40);
+    border-radius: 50%;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    transition: border-color var(--dur);
+}
+.user-chip:hover .user-avatar { border-color: rgba(255,255,255,0.8); }
+.user-info { display: flex; flex-direction: column; }
+.user-name {
+    font-size: 0.8rem; font-weight: 700;
+    color: #fff; line-height: 1.2;
+}
+.user-tier {
+    font-size: 0.68rem; font-weight: 600;
+    color: rgba(255,255,255,0.65);
+}
+
+/* ── 6. PAGE WRAPPER — Flexbox ROW ───────────────────────── */
+/*
+   FLEXBOX UTAMA: sidebar (fixed-width) + main (flex:1)
+   flex-direction: row adalah default, tidak perlu ditulis eksplisit.
+*/
+.page-wrapper {
+    display: flex;              /* ← FLEXBOX ROW */
+    min-height: calc(100vh - var(--topbar-h));
+    margin-top: var(--topbar-h);
+}
+
+/* ── 7. SIDEBAR — Flexbox COLUMN ─────────────────────────── */
+/*
+   FLEXBOX: flex-direction:column + justify-content:space-between
+   Mendorong eco-card ke bawah tanpa position:absolute.
+*/
+.sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;             /* ← FLEXBOX: jangan menyusut */
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: var(--topbar-h);
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    padding: 24px 14px;
+    z-index: 900;
+
+    display: flex;              /* ← FLEXBOX COLUMN */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-section-label {
+    font-size: 0.63rem;
+    font-weight: 700;
+    color: var(--faint);
+    letter-spacing: 0.08em;
+    padding: 0 8px;
+    margin-bottom: 6px;
+    font-family: 'Syne', sans-serif;
+}
+
+/* Nav item — Flexbox row */
+.nav-item {
+    display: flex;              /* ← FLEXBOX */
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: var(--r-sm);
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background var(--dur), color var(--dur), transform var(--dur);
+    position: relative;
+    margin-bottom: 2px;
+}
+.nav-item:hover:not(.nav-item--active) {
+    background: var(--bg);
+    color: var(--ink);
+    transform: translateX(3px);
+}
+.nav-item--active {
+    background: var(--green-100);
+    color: var(--green-700);
+    font-weight: 700;
+}
+.nav-item--danger { color: #EF4444; }
+.nav-item--danger:hover { background: #FEF2F2 !important; color: #DC2626 !important; }
+
+.nav-item-icon {
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 7px;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    transition: background var(--dur);
+}
+.nav-item--active .nav-item-icon {
+    background: rgba(46,125,50,0.14);
+    color: var(--green-700);
+}
+
+.nav-item-dot {
+    width: 6px; height: 6px;
+    background: var(--green-700);
+    border-radius: 50%;
+    margin-left: auto;
+}
+
+/* Eco Score Card — Flexbox column */
+.eco-card {
+    background: var(--green-50);
+    border: 1px solid #C8E6C9;
+    border-radius: var(--r-md);
+    padding: 16px;
+    display: flex;              /* ← FLEXBOX COLUMN */
+    flex-direction: column;
+    gap: 8px;
+}
+.eco-card-header {
+    display: flex;              /* ← FLEXBOX */
+    align-items: center;
+    gap: 8px;
+}
+.eco-icon { font-size: 1.2rem; }
+.eco-label { font-size: 0.78rem; font-weight: 700; color: var(--green-700); font-family: 'Syne', sans-serif; }
+.eco-track {
+    width: 100%; height: 7px;
+    background: #C8E6C9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.eco-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--green-700), #66BB6A, #A5D6A7);
+    background-size: 200% auto;
+    animation: shimmer 2.8s linear infinite;
+}
+.eco-note { font-size: 0.72rem; color: var(--green-700); font-weight: 600; }
+
+/* ── 8. MAIN CONTENT — Flexbox COLUMN ────────────────────── */
+.main {
+    margin-left: var(--sidebar-w);
+    flex: 1;                    /* ← FLEXBOX: isi ruang sisa */
+    padding: 36px 40px;
+    display: flex;              /* ← FLEXBOX COLUMN */
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* ── 9. MAIN HEADER ──────────────────────────────────────── */
+.main-header {
+    display: flex;              /* ← FLEXBOX */
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.main-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+.main-sub { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+.header-actions {
+    display: flex;              /* ← FLEXBOX */
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Buttons */
+.btn-ghost {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-sm);
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--body);
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    transition: all var(--dur);
+}
+.btn-ghost:hover { border-color: var(--green-700); color: var(--green-700); background: var(--green-50); }
+
+.btn-solid {
+    padding: 8px 16px;
+    background: var(--green-700);
+    border: 1.5px solid var(--green-700);
+    border-radius: var(--r-sm);
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 2px 8px rgba(46,125,50,0.30);
+    transition: all var(--dur);
+}
+.btn-solid:hover { background: var(--green-900); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(46,125,50,0.40); }
+
+/* ── 10. STAT CARDS — Flexbox WRAP (responsive tanpa @media) ─ */
+/*
+   Responsive MURNI via Flexbox:
+   flex-wrap: wrap + flex: 1 1 200px
+   Kolom otomatis menyesuaikan lebar kontainer.
+*/
+.stats-row {
+    display: flex;              /* ← FLEXBOX */
+    flex-wrap: wrap;            /* ← bungkus ke baris berikutnya jika sempit */
+    gap: 20px;
+}
+
+.stat-card {
+    flex: 1 1 180px;            /* ← FLEXBOX: min 180px, tumbuh proporsional */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 22px 20px;
+    display: flex;              /* ← FLEXBOX row dalam card */
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: var(--sh-sm);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--dur), box-shadow var(--dur);
+}
+/* Accent bar atas */
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+.stat-card--green::before  { background: linear-gradient(90deg, var(--green-700), #66BB6A); }
+.stat-card--amber::before  { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+.stat-card--blue::before   { background: linear-gradient(90deg, #3B82F6, #93C5FD); }
+.stat-card--purple::before { background: linear-gradient(90deg, #8B5CF6, #C4B5FD); }
+
+.stat-card:hover { transform: translateY(-5px); box-shadow: var(--sh-md); }
+.stat-card:hover .stat-card-icon { animation: floatY 1.6s ease-in-out infinite; }
+
+.stat-card-body {
+    display: flex;              /* ← FLEXBOX COLUMN */
+    flex-direction: column;
+    gap: 4px;
+}
+.stat-label  { font-size: 0.76rem; font-weight: 600; color: var(--muted); }
+.stat-val    {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+.stat-trend {
+    font-size: 0.74rem;
+    font-weight: 600;
+    display: flex; align-items: center; gap: 2px;
+}
+.stat-trend.up      { color: #16A34A; }
+.stat-trend.down    { color: #DC2626; }
+.stat-trend.neutral { color: var(--muted); }
+
+.stat-card-icon {
+    width: 44px; height: 44px;
+    border-radius: var(--r-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+.stat-card--green  .stat-card-icon { background: var(--green-100); color: var(--green-700); }
+.stat-card--amber  .stat-card-icon { background: #FEF3C7; color: #D97706; }
+.stat-card--blue   .stat-card-icon { background: #EFF6FF; color: #2563EB; }
+.stat-card--purple .stat-card-icon { background: #F5F3FF; color: #7C3AED; }
+
+/* ── 11. BOTTOM SECTION — Flexbox ROW ────────────────────── */
+/*
+   FLEXBOX: row dengan flex-ratio 2:1 (tabel:aktivitas)
+   Menggunakan flex-grow berbeda agar proporsi tetap.
+*/
+.bottom-section {
+    display: flex;              /* ← FLEXBOX ROW */
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.orders-card  {
+    flex: 2;                    /* ← FLEXBOX: ambil 2 bagian */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 26px;
+    box-shadow: var(--sh-sm);
+}
+.activity-card {
+    flex: 1;                    /* ← FLEXBOX: ambil 1 bagian */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 26px;
+    box-shadow: var(--sh-sm);
+}
+
+/* Card header */
+.card-head {
+    display: flex;              /* ← FLEXBOX */
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 22px;
+}
+.card-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.card-sub   { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+.link-all   {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--green-700);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 4px;
+    white-space: nowrap;
+    transition: gap var(--dur), color var(--dur);
+}
+.link-all:hover { gap: 8px; }
+
+/* Table */
+.table-scroll { overflow-x: auto; }
+.orders-table { width: 100%; border-collapse: collapse; }
+.orders-table th {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0 0 12px;
+    border-bottom: 1px solid var(--border);
+}
+.orders-table td {
+    padding: 14px 0;
+    font-size: 0.865rem;
+    border-bottom: 1px solid var(--border-lt);
+    vertical-align: middle;
+    color: var(--body);
+}
+.orders-table tbody tr:last-child td { border-bottom: none; }
+.orders-table tbody tr { transition: background var(--dur); }
+.orders-table tbody tr:hover td { background: var(--bg); }
+
+.oid {
+    font-family: 'Epilogue', monospace;
+    font-size: 0.78rem;
+    background: var(--green-100);
+    color: var(--green-700);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+.prod-name { font-size: 0.85rem; }
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 3px 11px;
+    border-radius: 20px;
+    font-size: 0.73rem;
+    font-weight: 700;
+}
+.badge--done { background: #ECFDF5; color: #065F46; }
+.badge--ship { background: #EFF6FF; color: #1D4ED8; }
+.badge--proc { background: #FFF7ED; color: #C2410C; }
+
+/* Activity Feed — Flexbox column */
+.activity-list { list-style: none; padding: 0; }
+.activity-item {
+    display: flex;              /* ← FLEXBOX */
+    gap: 12px;
+    padding-bottom: 16px;
+    position: relative;
+}
+.activity-item:not(.activity-item--last)::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 16px;
+    width: 1px;
+    height: calc(100% - 16px);
+    background: var(--border);
+}
+.dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 3px;
+    border: 2px solid var(--surface);
+}
+.dot--green { background: var(--green-700); box-shadow: 0 0 0 2px #C8E6C9; }
+.dot--blue  { background: #3B82F6; box-shadow: 0 0 0 2px #BFDBFE; }
+.dot--amber { background: #F59E0B; box-shadow: 0 0 0 2px #FDE68A; }
+.dot--gray  { background: var(--faint); box-shadow: 0 0 0 2px var(--border); }
+
+.activity-item p    { font-size: 0.82rem; line-height: 1.4; color: var(--body); }
+.activity-item time { font-size: 0.72rem; color: var(--faint); display: block; margin-top: 2px; }
+
+/* ── 12. RESPONSIVE — Media Queries ──────────────────────── */
+/* CATATAN: Stat cards sudah responsive via flex-wrap tanpa media query.
+   Media query hanya untuk sidebar collapse dan padding adjustment. */
+
+@media (max-width: 1100px) {
+    .main { padding: 28px 24px; }
+}
+
+/* Tablet — collapsed sidebar */
+@media (max-width: 960px) {
+    :root { --sidebar-w: 68px; }
+    .nav-item-text, .nav-section-label, .eco-card, .user-info { display: none !important; }
+    .nav-item { justify-content: center; padding: 10px; }
+    .nav-item-dot { display: none; }
+    .sidebar { align-items: center; padding: 20px 8px; }
+    .main { padding: 24px 16px; }
+}
+
+/* Mobile — sidebar hilang */
+@media (max-width: 680px) {
+    :root { --sidebar-w: 0px; }
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 20px 14px; }
+    .topbar-center { display: none; }
+    .bottom-section { flex-direction: column; }   /* ← Flexbox: ubah ke kolom */
+    .orders-card, .activity-card { flex: none; width: 100%; }
+    .main-title { font-size: 1.4rem; }
+}
+
+@media (max-width: 420px) {
+    .main-header { flex-direction: column; }      /* ← Flexbox: ubah ke kolom */
+    .header-actions { width: 100%; }
+    .btn-ghost, .btn-solid { flex: 1; justify-content: center; }
+}
+
+/* ── 13. SCROLLBAR ────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #C8E6C9; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green-700); }

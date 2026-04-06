@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLink Dashboard — Bootstrap Grid</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========= TOPBAR ========= -->
+    <header class="gl-topbar anim-drop">
+        <div class="gl-topbar-inner d-flex align-items-center gap-3">
+            <a href="#" class="gl-brand d-flex align-items-center gap-2 text-decoration-none flex-shrink-0">
+                <div class="gl-brand-mark">
+                    <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+                        <path d="M14.667 26.667c-2.342.007-4.6-.866-6.328-2.446C6.612 22.64 5.541 20.469 5.34 18.136c-.202-2.332.482-4.655 1.913-6.508C8.683 9.775 10.759 8.528 13.067 8.133c7.6-1.467 9.6-2.16 12.266-5.467 1.334 2.667 2.667 5.573 2.667 10.667 0 7.333-6.373 13.333-13.333 13.333z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.667 28c0-4 2.466-7.147 6.773-8C12.667 19.36 16 17.333 17.333 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="gl-brand-name d-none d-md-block">GreenLink</span>
+            </a>
+
+            <!-- Search — menggunakan Bootstrap d-none d-md-flex untuk responsive -->
+            <div class="gl-search flex-grow-1 d-none d-md-flex justify-content-center">
+                <div class="gl-search-box position-relative w-100" style="max-width:480px">
+                    <i class="bi bi-search gl-search-ico"></i>
+                    <input type="text" class="gl-search-input" placeholder="Cari produk eco...">
+                </div>
+            </div>
+
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <button class="gl-icon-btn position-relative d-none d-sm-flex">
+                    <i class="bi bi-bell"></i>
+                    <span class="gl-notif-dot"></span>
+                </button>
+                <button class="gl-icon-btn position-relative">
+                    <i class="bi bi-bag"></i>
+                    <span class="gl-cart-badge">2</span>
+                </button>
+                <div class="gl-avatar-wrap d-flex align-items-center gap-2">
+                    <div class="gl-avatar">A</div>
+                    <div class="d-none d-lg-block">
+                        <p class="gl-uname mb-0">Dwi Maulidan</p>
+                        <p class="gl-urole mb-0">Premium</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========= PAGE — Bootstrap container-fluid ========= -->
+    <div class="gl-page-shell">
+
+        <!-- ========= SIDEBAR ========= -->
+        <aside class="gl-sidebar anim-rise">
+            <p class="gl-nav-lbl">MENU</p>
+            <nav class="gl-nav">
+                <a href="#" class="gl-nav-link active">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="gl-nav-link">
+                    <i class="bi bi-shop"></i>
+                    <span>Produk</span>
+                </a>
+                <a href="#" class="gl-nav-link">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Pesanan Saya</span>
+                </a>
+                <a href="#" class="gl-nav-link">
+                    <i class="bi bi-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+            </nav>
+
+            <p class="gl-nav-lbl mt-4">AKUN</p>
+            <nav class="gl-nav">
+                <a href="#" class="gl-nav-link">
+                    <i class="bi bi-person"></i>
+                    <span>Profil</span>
+                </a>
+                <a href="#" class="gl-nav-link">
+                    <i class="bi bi-gear"></i>
+                    <span>Pengaturan</span>
+                </a>
+                <a href="#" class="gl-nav-link gl-nav-link--out">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Keluar</span>
+                </a>
+            </nav>
+
+            <div class="gl-eco-widget">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span>🌱</span>
+                    <strong class="gl-eco-ttl">Eco Score</strong>
+                </div>
+                <div class="gl-eco-track">
+                    <div class="gl-eco-bar"></div>
+                </div>
+                <small class="gl-eco-note">72/100 — Luar biasa!</small>
+            </div>
+        </aside>
+
+        <!-- ========= MAIN ========= -->
+        <main class="gl-main">
+
+            <!-- Header -->
+            <div class="gl-welcome anim-up" style="--d:0.05s">
+                <!-- Bootstrap d-flex, flex-wrap, gap utilities -->
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div>
+                        <h1 class="gl-welcome-h">Selamat datang, Dwi! 👋</h1>
+                        <p class="gl-welcome-p mb-0">Pantau aktivitas belanja berkelanjutan kamu</p>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="gl-btn-outline"><i class="bi bi-download me-1"></i>Ekspor</button>
+                        <button class="gl-btn-fill"><i class="bi bi-plus-lg me-1"></i>Pesanan Baru</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STAT CARDS — Bootstrap Grid ===== -->
+            <!--
+                BOOTSTRAP GRID: .row + breakpoint columns
+                col-12       → 1 kolom di XS (<576px)
+                col-sm-6     → 2 kolom di SM (≥576px)
+                col-lg-3     → 4 kolom di LG (≥992px)
+                g-4          → Bootstrap gap utility (gutter)
+            -->
+            <div class="row g-4 mb-4 anim-up" style="--d:0.15s">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="gl-stat gl-stat--g">
+                        <div>
+                            <p class="gl-stat-lbl">Total Pesanan</p>
+                            <h2 class="gl-stat-num counter" data-to="24">0</h2>
+                            <span class="gl-trend gl-trend--up"><i class="bi bi-arrow-up-short"></i>12%</span>
+                        </div>
+                        <div class="gl-stat-ico"><i class="bi bi-bag-heart-fill"></i></div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="gl-stat gl-stat--a">
+                        <div>
+                            <p class="gl-stat-lbl">Pesanan Aktif</p>
+                            <h2 class="gl-stat-num counter" data-to="3">0</h2>
+                            <span class="gl-trend gl-trend--n"><i class="bi bi-clock"></i> Diproses</span>
+                        </div>
+                        <div class="gl-stat-ico"><i class="bi bi-hourglass-split"></i></div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="gl-stat gl-stat--b">
+                        <div>
+                            <p class="gl-stat-lbl">Selesai</p>
+                            <h2 class="gl-stat-num counter" data-to="21">0</h2>
+                            <span class="gl-trend gl-trend--up"><i class="bi bi-arrow-up-short"></i>8%</span>
+                        </div>
+                        <div class="gl-stat-ico"><i class="bi bi-patch-check-fill"></i></div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="gl-stat gl-stat--p">
+                        <div>
+                            <p class="gl-stat-lbl">Total Belanja</p>
+                            <h2 class="gl-stat-num">Rp 695K</h2>
+                            <span class="gl-trend gl-trend--dn"><i class="bi bi-arrow-down-short"></i>4%</span>
+                        </div>
+                        <div class="gl-stat-ico"><i class="bi bi-wallet2"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== BOTTOM ROW — Bootstrap Grid 8:4 ===== -->
+            <!--
+                col-12       → full-width di mobile
+                col-lg-8     → 8/12 kolom di LG untuk tabel
+                col-lg-4     → 4/12 kolom di LG untuk aktivitas
+            -->
+            <div class="row g-4 anim-up" style="--d:0.25s">
+
+                <!-- Orders Table -->
+                <div class="col-12 col-lg-8">
+                    <div class="gl-card">
+                        <div class="gl-card-hd">
+                            <div>
+                                <h3 class="gl-card-ttl">Pesanan Terkini</h3>
+                                <p class="gl-card-sub mb-0">3 transaksi terbaru</p>
+                            </div>
+                            <a href="#" class="gl-link-all">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="gl-table w-100">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tanggal</th>
+                                        <th class="d-none d-md-table-cell">Produk</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tr-anim">
+                                        <td><code class="gl-oid">#001</code></td>
+                                        <td>28 Feb 2026</td>
+                                        <td class="d-none d-md-table-cell">
+                                            <span class="gl-prod">🌿 Bamboo Toothbrush</span>
+                                        </td>
+                                        <td><strong>Rp 335.000</strong></td>
+                                        <td><span class="gl-badge gl-badge--done">Selesai</span></td>
+                                    </tr>
+                                    <tr class="tr-anim">
+                                        <td><code class="gl-oid">#002</code></td>
+                                        <td>01 Mar 2026</td>
+                                        <td class="d-none d-md-table-cell">
+                                            <span class="gl-prod">♻️ Reusable Bag Pack</span>
+                                        </td>
+                                        <td><strong>Rp 275.000</strong></td>
+                                        <td><span class="gl-badge gl-badge--ship">Dikirim</span></td>
+                                    </tr>
+                                    <tr class="tr-anim">
+                                        <td><code class="gl-oid">#003</code></td>
+                                        <td>02 Mar 2026</td>
+                                        <td class="d-none d-md-table-cell">
+                                            <span class="gl-prod">🌱 Seed Paper Notebook</span>
+                                        </td>
+                                        <td><strong>Rp 85.000</strong></td>
+                                        <td><span class="gl-badge gl-badge--proc">Diproses</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Feed -->
+                <div class="col-12 col-lg-4">
+                    <div class="gl-card h-100">
+                        <div class="gl-card-hd">
+                            <div>
+                                <h3 class="gl-card-ttl">Aktivitas</h3>
+                                <p class="gl-card-sub mb-0">7 hari terakhir</p>
+                            </div>
+                        </div>
+                        <ul class="gl-act-list list-unstyled mb-0">
+                            <li class="gl-act-item">
+                                <span class="gl-dot gl-dot--g"></span>
+                                <div>
+                                    <p class="mb-0">Pesanan <b>#001</b> selesai</p>
+                                    <small>2 hari lalu</small>
+                                </div>
+                            </li>
+                            <li class="gl-act-item">
+                                <span class="gl-dot gl-dot--b"></span>
+                                <div>
+                                    <p class="mb-0">Pesanan <b>#002</b> dikirim</p>
+                                    <small>3 hari lalu</small>
+                                </div>
+                            </li>
+                            <li class="gl-act-item">
+                                <span class="gl-dot gl-dot--a"></span>
+                                <div>
+                                    <p class="mb-0">Pesanan <b>#003</b> diproses</p>
+                                    <small>5 hari lalu</small>
+                                </div>
+                            </li>
+                            <li class="gl-act-item">
+                                <span class="gl-dot gl-dot--g"></span>
+                                <div>
+                                    <p class="mb-0">Eco Score naik ke <b>72</b></p>
+                                    <small>6 hari lalu</small>
+                                </div>
+                            </li>
+                            <li class="gl-act-item gl-act-item--last">
+                                <span class="gl-dot gl-dot--gr"></span>
+                                <div>
+                                    <p class="mb-0">Bergabung sebagai <b>Premium</b></p>
+                                    <small>7 hari lalu</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- /row -->
+        </main>
+    </div><!-- /gl-page-shell -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Counter animation
+        document.querySelectorAll('.counter').forEach(el => {
+            const target = +el.dataset.to;
+            let n = 0;
+            const step = Math.ceil(target / 30);
+            const t = setInterval(() => {
+                n = Math.min(n + step, target);
+                el.textContent = n;
+                if (n >= target) clearInterval(t);
+            }, 50);
+        });
+
+        // IntersectionObserver untuk .anim-up
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-vis'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.anim-up').forEach(el => io.observe(el));
+
+        // Table row stagger
+        document.querySelectorAll('.tr-anim').forEach((r, i) => {
+            r.style.animationDelay = `${0.35 + i * 0.1}s`;
+            r.classList.add('tr-show');
+        });
+
+        // Nav active
+        document.querySelectorAll('.gl-nav-link').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelectorAll('.gl-nav-link').forEach(x => x.classList.remove('active'));
+                a.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

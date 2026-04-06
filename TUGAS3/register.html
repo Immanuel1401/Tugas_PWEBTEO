@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | GreenLink</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style-register.css">
+</head>
+<body>
+
+    <div class="container-bg">
+        <main class="register-card">
+            <div class="grid-container">
+                
+                <section class="branding-side">
+                    <div class="logo-wrapper">
+                        <i data-lucide="leaf" class="icon-large"></i>
+                        <span class="brand-name">GreenLink</span>
+                    </div>
+                    <h2 class="branding-title">Join Our Sustainable Community</h2>
+                    <p class="branding-text">
+                        Create an account and start making a positive environmental impact today.
+                    </p>
+                    <ul class="benefits-list">
+                        <li><i data-lucide="check-circle" class="icon-small"></i> Access to eco-friendly products</li>
+                        <li><i data-lucide="check-circle" class="icon-small"></i> Book environmental services</li>
+                        <li><i data-lucide="check-circle" class="icon-small"></i> Join sustainable community</li>
+                    </ul>
+                </section>
+
+                <section class="form-side">
+                    <h2 class="form-title">Create Your Account</h2>
+                    
+                    <form action="#">
+                        <div class="input-group">
+                            <label class="label-text">Register as <span class="required">*</span></label>
+                            <div class="role-selector">
+                                <button type="button" class="role-btn active">
+                                    <strong>Customer</strong>
+                                    <span>Buy eco products</span>
+                                </button>
+                                <button type="button" class="role-btn">
+                                    <strong>Vendor</strong>
+                                    <span>Sell products</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="inputs-stack">
+                            <div class="field">
+                                <label>Full Name</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="user"></i>
+                                    <input type="text" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Email</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="mail"></i>
+                                    <input type="email" placeholder="your@email.com" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="lock"></i>
+                                    <input type="password" placeholder="••••••••" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Confirm Password</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="lock"></i>
+                                    <input type="password" placeholder="••••••••" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <label class="terms">
+                            <input type="checkbox" required>
+                            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+                        </label>
+
+                        <button type="submit" class="btn-submit">Create Account</button>
+
+                        <p class="login-prompt">
+                            Already have an account? <a href="#">Login here</a>
+                        </p>
+                    </form>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>

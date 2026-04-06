@@ -1,0 +1,571 @@
+/* ============================================================
+   style_bootstrap.css — GreenLink Dashboard (BAB 2: BOOTSTRAP GRID)
+   Layout Engine : Bootstrap 5 Grid System (.row / .col-*) +
+                   CSS Grid untuk struktur halaman (sidebar+main)
+   Animasi       : CSS @keyframes + Transition
+   Responsive    : Bootstrap breakpoints (sm/md/lg/xl)
+   Font          : Fraunces (display) + DM Sans (body)
+   ============================================================ */
+
+/* ── 1. CUSTOM PROPERTIES ─────────────────────────────────── */
+:root {
+    --g-700:   #2E7D32;
+    --g-900:   #1B5E20;
+    --g-100:   #E8F5E9;
+    --g-50:    #F1F8E9;
+    --accent:  #00C853;
+
+    --ink:     #0F1923;
+    --body:    #374151;
+    --muted:   #6B7280;
+    --faint:   #9CA3AF;
+
+    --white:   #FFFFFF;
+    --bg:      #F8FAF8;
+    --border:  #E5EAE5;
+    --border-l:#F0F4F0;
+
+    --sh-sm: 0 1px 3px rgba(0,0,0,0.07);
+    --sh-md: 0 6px 24px rgba(46,125,50,0.10);
+    --sh-lg: 0 12px 48px rgba(46,125,50,0.15);
+
+    --r:     12px;
+    --r-lg:  20px;
+    --r-xl:  28px;
+
+    --easing: cubic-bezier(0.4,0,0.2,1);
+    --dur:    0.26s;
+
+    --topbar-h:  68px;
+    --sidebar-w: 250px;
+}
+
+/* ── 2. RESET & BASE ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--body);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── 3. KEYFRAME ANIMATIONS ───────────────────────────────── */
+
+/* Topbar drop dari atas */
+@keyframes dropDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* Sidebar naik dari bawah */
+@keyframes riseUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Section konten fade + naik (scroll-triggered) */
+@keyframes upFade {
+    from { transform: translateY(22px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Baris tabel masuk bergantian */
+@keyframes trEnter {
+    from { transform: translateX(-14px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* Dot notifikasi berdetak */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    30%       { transform: scale(1.5); }
+    60%       { transform: scale(1.2); }
+}
+
+/* Eco bar shimmer */
+@keyframes ecoShine {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+}
+
+/* Stat card icon memutar kecil saat hover */
+@keyframes wiggle {
+    0%,100% { transform: rotate(0deg); }
+    25%      { transform: rotate(-8deg); }
+    75%      { transform: rotate(8deg); }
+}
+
+/* Progress bar stat card mengisi */
+@keyframes barFill {
+    from { width: 0; }
+}
+
+/* ── 4. ANIMATION UTILITY CLASSES ────────────────────────── */
+.anim-drop { animation: dropDown 0.40s var(--easing) both; }
+.anim-rise { animation: riseUp  0.40s 0.10s var(--easing) both; }
+
+/* anim-up: state awal, class .is-vis ditambahkan JS */
+.anim-up {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.5s var(--easing) var(--d, 0s),
+                transform 0.5s var(--easing) var(--d, 0s);
+}
+.anim-up.is-vis { opacity: 1; transform: translateY(0); }
+
+/* Baris tabel */
+.tr-anim { opacity: 0; transform: translateX(-14px); }
+.tr-anim.tr-show { animation: trEnter 0.36s var(--easing) both; }
+
+/* ── 5. TOPBAR ────────────────────────────────────────────── */
+/* Menggunakan Bootstrap d-flex utilities di HTML,
+   custom CSS hanya untuk visual styling. */
+.gl-topbar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--topbar-h);
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    box-shadow: var(--sh-sm);
+}
+.gl-topbar-inner {
+    height: 100%;
+    padding: 0 24px;
+    /* d-flex align-items-center gap-3 via Bootstrap utilities di HTML */
+}
+
+/* Brand */
+.gl-brand-mark {
+    width: 36px; height: 36px;
+    background: var(--g-100);
+    color: var(--g-700);
+    border-radius: var(--r);
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--dur);
+}
+.gl-brand:hover .gl-brand-mark { background: var(--g-700); color: #fff; }
+.gl-brand-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--g-700);
+    letter-spacing: -0.02em;
+}
+
+/* Search */
+.gl-search-ico {
+    position: absolute; left: 13px;
+    color: var(--muted);
+    pointer-events: none;
+    transition: color var(--dur);
+}
+.gl-search-input {
+    width: 100%;
+    padding: 9px 16px 9px 38px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    color: var(--ink);
+    outline: none;
+    transition: all var(--dur);
+}
+.gl-search-input:focus {
+    background: var(--white);
+    border-color: var(--g-700);
+    box-shadow: 0 0 0 3px rgba(46,125,50,0.10);
+}
+.gl-search-input::placeholder { color: var(--faint); }
+
+/* Icon buttons */
+.gl-icon-btn {
+    width: 38px; height: 38px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    background: var(--white);
+    color: var(--body);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--dur);
+}
+.gl-icon-btn:hover { background: var(--g-100); border-color: var(--g-700); color: var(--g-700); }
+
+.gl-notif-dot {
+    width: 8px; height: 8px;
+    background: #F43F5E;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    position: absolute; top: 5px; right: 5px;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+.gl-cart-badge {
+    position: absolute; top: -4px; right: -4px;
+    width: 17px; height: 17px;
+    background: var(--g-700);
+    color: #fff;
+    font-size: 0.62rem; font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--white);
+}
+
+/* Avatar */
+.gl-avatar {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--g-700), var(--accent));
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700; font-size: 0.875rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(46,125,50,0.30);
+}
+.gl-uname { font-size: 0.8rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.gl-urole { font-size: 0.68rem; color: var(--g-700); font-weight: 600; }
+
+/* ── 6. PAGE SHELL — CSS Grid (sidebar + main) ────────────── */
+/*
+   CSS Grid digunakan untuk struktur halaman utama (2 kolom).
+   Bootstrap Grid digunakan di dalam .gl-main untuk konten.
+   Pemisahan yang bersih antara layout makro vs mikro.
+*/
+.gl-page-shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr; /* ← CSS GRID 2 kolom */
+    min-height: calc(100vh - var(--topbar-h));
+    margin-top: var(--topbar-h);
+}
+
+/* ── 7. SIDEBAR ───────────────────────────────────────────── */
+.gl-sidebar {
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 24px 14px;
+    position: fixed;
+    top: var(--topbar-h);
+    bottom: 0;
+    width: var(--sidebar-w);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 900;
+}
+
+.gl-nav-lbl {
+    font-size: 0.63rem; font-weight: 700;
+    color: var(--faint);
+    letter-spacing: 0.08em;
+    padding: 0 8px; margin-bottom: 6px;
+    font-family: 'DM Sans', sans-serif;
+}
+.gl-nav { display: flex; flex-direction: column; gap: 2px; }
+.gl-nav-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 10px;
+    border-radius: var(--r);
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--dur);
+}
+.gl-nav-link i { font-size: 0.95rem; width: 20px; text-align: center; flex-shrink: 0; }
+.gl-nav-link:hover:not(.active) { background: var(--bg); color: var(--ink); }
+.gl-nav-link.active { background: var(--g-100); color: var(--g-700); font-weight: 700; }
+.gl-nav-link--out { color: #EF4444 !important; }
+.gl-nav-link--out:hover { background: #FEF2F2 !important; }
+
+/* Eco widget */
+.gl-eco-widget {
+    background: var(--g-50);
+    border: 1px solid #C8E6C9;
+    border-radius: var(--r-lg);
+    padding: 14px;
+}
+.gl-eco-ttl { font-size: 0.78rem; font-weight: 700; color: var(--g-700); }
+.gl-eco-track {
+    height: 6px;
+    background: #C8E6C9;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 6px 0 4px;
+}
+.gl-eco-bar {
+    width: 72%; height: 100%;
+    background: linear-gradient(90deg, var(--g-700), #66BB6A, #A5D6A7);
+    background-size: 200% auto;
+    border-radius: 3px;
+    animation: ecoShine 2.5s linear infinite;
+}
+.gl-eco-note { font-size: 0.70rem; color: var(--g-700); font-weight: 600; }
+
+/* ── 8. MAIN CONTENT ──────────────────────────────────────── */
+/* grid-column: 2 / 3 → kolom kedua dari CSS Grid di .gl-page-shell */
+.gl-main {
+    grid-column: 2 / 3;        /* ← CSS Grid placement */
+    padding: 36px 40px;
+    min-height: calc(100vh - var(--topbar-h));
+}
+
+/* ── 9. WELCOME ───────────────────────────────────────────── */
+.gl-welcome { margin-bottom: 28px; }
+.gl-welcome-h {
+    font-family: 'Fraunces', serif;
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+.gl-welcome-p { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+
+.gl-btn-outline {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--body);
+    cursor: pointer;
+    transition: all var(--dur);
+}
+.gl-btn-outline:hover { border-color: var(--g-700); color: var(--g-700); background: var(--g-50); }
+
+.gl-btn-fill {
+    padding: 8px 16px;
+    background: var(--g-700);
+    border: 1.5px solid var(--g-700);
+    border-radius: var(--r);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(46,125,50,0.28);
+    transition: all var(--dur);
+}
+.gl-btn-fill:hover { background: var(--g-900); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(46,125,50,0.38); }
+
+/* ── 10. STAT CARDS (Bootstrap Grid columns) ─────────────── */
+/*
+   Bootstrap Grid: .row.g-4 + .col-12.col-sm-6.col-lg-3
+   Setiap breakpoint mengatur jumlah kolom secara deklaratif.
+   Custom CSS hanya styling visual card-nya.
+*/
+.gl-stat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 22px 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: var(--sh-sm);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--dur), box-shadow var(--dur);
+}
+.gl-stat::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+}
+.gl-stat--g::before { background: linear-gradient(90deg, var(--g-700), #69F0AE); }
+.gl-stat--a::before { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+.gl-stat--b::before { background: linear-gradient(90deg, #3B82F6, #93C5FD); }
+.gl-stat--p::before { background: linear-gradient(90deg, #8B5CF6, #C4B5FD); }
+
+.gl-stat:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+.gl-stat:hover .gl-stat-ico { animation: wiggle 0.5s ease-in-out; }
+
+.gl-stat-lbl { font-size: 0.76rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+.gl-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+.gl-trend {
+    font-size: 0.73rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 2px;
+}
+.gl-trend--up { color: #16A34A; }
+.gl-trend--dn { color: #DC2626; }
+.gl-trend--n  { color: var(--muted); }
+
+.gl-stat-ico {
+    width: 44px; height: 44px;
+    border-radius: var(--r);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+.gl-stat--g .gl-stat-ico { background: var(--g-100); color: var(--g-700); }
+.gl-stat--a .gl-stat-ico { background: #FEF3C7; color: #D97706; }
+.gl-stat--b .gl-stat-ico { background: #EFF6FF; color: #2563EB; }
+.gl-stat--p .gl-stat-ico { background: #F5F3FF; color: #7C3AED; }
+
+/* ── 11. CARDS (Orders + Activity) ───────────────────────── */
+/* Bootstrap: .col-12.col-lg-8 dan .col-12.col-lg-4 mengatur lebar. */
+.gl-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 26px;
+    box-shadow: var(--sh-sm);
+}
+.gl-card-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.gl-card-ttl {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--ink);
+}
+.gl-card-sub { font-size: 0.76rem; color: var(--muted); }
+.gl-link-all {
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--g-700);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 4px;
+    white-space: nowrap;
+    transition: gap var(--dur);
+}
+.gl-link-all:hover { gap: 8px; }
+
+/* Table */
+.gl-table { border-collapse: collapse; }
+.gl-table th {
+    text-align: left;
+    font-size: 0.71rem; font-weight: 700;
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0 0 12px;
+    border-bottom: 1px solid var(--border);
+}
+.gl-table td {
+    padding: 14px 0;
+    font-size: 0.865rem;
+    border-bottom: 1px solid var(--border-l);
+    vertical-align: middle;
+}
+.gl-table tbody tr:last-child td { border-bottom: none; }
+.gl-table tbody tr { transition: background var(--dur); }
+.gl-table tbody tr:hover td { background: var(--bg); }
+
+.gl-oid {
+    background: var(--g-100);
+    color: var(--g-700);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem; font-weight: 600;
+    font-family: 'DM Sans', monospace;
+}
+.gl-prod { font-size: 0.84rem; }
+
+.gl-badge {
+    display: inline-block;
+    padding: 3px 11px;
+    border-radius: 20px;
+    font-size: 0.73rem; font-weight: 700;
+}
+.gl-badge--done { background: #ECFDF5; color: #065F46; }
+.gl-badge--ship { background: #EFF6FF; color: #1D4ED8; }
+.gl-badge--proc { background: #FFF7ED; color: #C2410C; }
+
+/* Activity List */
+.gl-act-list { padding: 0; }
+.gl-act-item {
+    display: flex; gap: 12px;
+    padding-bottom: 16px;
+    position: relative;
+}
+.gl-act-item:not(.gl-act-item--last)::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 16px;
+    width: 1px; height: calc(100% - 16px);
+    background: var(--border);
+}
+.gl-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 3px;
+    border: 2px solid var(--white);
+}
+.gl-dot--g  { background: var(--g-700); box-shadow: 0 0 0 2px #C8E6C9; }
+.gl-dot--b  { background: #3B82F6; box-shadow: 0 0 0 2px #BFDBFE; }
+.gl-dot--a  { background: #F59E0B; box-shadow: 0 0 0 2px #FDE68A; }
+.gl-dot--gr { background: var(--faint); box-shadow: 0 0 0 2px var(--border); }
+
+.gl-act-item p     { font-size: 0.82rem; color: var(--body); line-height: 1.4; }
+.gl-act-item small { font-size: 0.71rem; color: var(--faint); display: block; margin-top: 2px; }
+
+/* ── 12. RESPONSIVE — Bootstrap Breakpoints + CSS Grid Override ── */
+
+/* ≤1200px: kurangi padding */
+@media (max-width: 1200px) {
+    .gl-main { padding: 28px 24px; }
+}
+
+/* ≤991px: sidebar collapse → CSS Grid 1 kolom */
+@media (max-width: 991px) {
+    :root { --sidebar-w: 64px; }
+
+    /* CSS Grid: kolom kiri dikecilkan */
+    .gl-page-shell {
+        grid-template-columns: var(--sidebar-w) 1fr;   /* ← CSS GRID update */
+    }
+
+    .gl-nav-lbl,
+    .gl-nav-link span,
+    .gl-eco-widget,
+    .gl-uname, .gl-urole { display: none !important; }
+    .gl-nav-link { justify-content: center; padding: 10px; }
+    .gl-nav-link i { width: auto; }
+    .gl-sidebar { align-items: center; padding: 20px 8px; }
+    .gl-main { padding: 24px 16px; }
+}
+
+/* ≤767px: sidebar hilang → CSS Grid 1 kolom penuh */
+@media (max-width: 767px) {
+    :root { --sidebar-w: 0px; }
+
+    /* CSS Grid: hilangkan kolom sidebar */
+    .gl-page-shell {
+        grid-template-columns: 1fr;                   /* ← CSS GRID 1 kolom */
+    }
+    .gl-sidebar  { display: none; }
+    .gl-main {
+        grid-column: 1 / 2;                           /* ← CSS GRID placement */
+        padding: 20px 14px;
+    }
+    .gl-welcome-h { font-size: 1.5rem; }
+}
+
+/* ≤575px: tombol penuh */
+@media (max-width: 575px) {
+    .gl-welcome-h { font-size: 1.25rem; }
+    .gl-btn-outline, .gl-btn-fill { padding: 7px 12px; font-size: 0.78rem; }
+}
+
+/* ── 13. SCROLLBAR ────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #C8E6C9; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--g-700); }

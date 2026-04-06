@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+ 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Halaman profil pribadi Dwi Maulidan - Mahasiswa
+                 Sistem Informasi yang bersemangat dalam
+                 pengembangan web dan teknologi.">
+ 
+  <meta name="keywords"
+        content="profil, mahasiswa, web developer, HTML, CSS">
+ 
+  <meta name="author" content="Dwi Maulidan">
+ 
+  <title>Profil Pribadi | Dwi Maulidan</title>
+  <link rel="stylesheet" href="style.css">
+ 
+  <meta property="og:title" content="Profil Pribadi Dwi Maulidan">
+  <meta property="og:description"
+        content="Halaman profil pribadi mahasiswa Sistem Informasi">
+  <meta property="og:type" content="profile">
+ 
+</head>
+ 
+<body>
+  <a href="#konten-utama" class="skip-link">
+    Lewati navigasi, langsung ke konten
+  </a>
+  <header>
+    <div class="profil-hero">
+      <img src="foto-profil.jpg"
+           alt="Foto profil Dwi Maulidan, mahasiswa Sistem Informasi"
+           width="180"
+           height="180"
+           class="foto-profil">
+ 
+      <h1>Dwi Maulidan</h1>
+ 
+      <p class="tagline">
+        Mahasiswa Sistem Informasi &bull; Universitas Airlangga
+      </p>
+    </div>
+ 
+    <nav aria-label="Navigasi halaman profil">
+      <ul>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#pendidikan">Pendidikan</a></li>
+        <li><a href="#keahlian">Keahlian</a></li>
+        <li><a href="#proyek">Proyek</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <main id="konten-utama">
+    <section id="tentang" aria-labelledby="heading-tentang">
+      <h2 id="heading-tentang">Tentang Saya</h2>
+ 
+      <p style="text-align: justify;">
+        Halo! Nama saya <strong>Dwi Maulidan</strong>, mahasiswa
+        semester empat Program Studi Sistem Informasi di
+        Universitas Airlangga. Saya memiliki ketertarikan
+        yang besar terhadap dunia pengembangan web, khususnya dalam
+        membangun antarmuka pengguna yang intuitif dan aksesibel.
+      </p><br>
+ 
+      <p style="text-align: justify;">
+        Saat ini saya aktif mempelajari teknologi web modern,
+        mengerjakan proyek-proyek open source, dan berpartisipasi
+        dalam komunitas developer lokal. Saya percaya bahwa
+        <q>kode yang baik adalah kode yang mudah dibaca oleh manusia</q>.
+      </p><br>
+ 
+      <dl class="info-singkat">
+        <dt>NIM</dt>
+        <dd>187241006</dd>
+        <dt>Angkatan</dt>
+        <dd>2024</dd>
+        <dt>Status</dt>
+        <dd>Aktif - Semester Genap 2025/2026</dd>
+      </dl>
+ 
+    </section>
+ 
+    <section id="pendidikan" aria-labelledby="heading-pendidikan">
+      <h2 id="heading-pendidikan">Riwayat Pendidikan</h2>
+      <table border="1">
+        <caption>Data Riwayat Pendidikan Formal</caption>
+        <thead>
+          <tr>
+            <th scope="col">Jenjang</th>
+            <th scope="col">Nama Institusi</th>
+            <th scope="col">Jurusan / Program Studi</th>
+            <th scope="col">Periode</th>
+          </tr>
+        </thead>
+ 
+        <tbody>
+          <tr>
+            <td>S1 (Sarjana)</td>
+            <td>Universitas Airlangga</td>
+            <td>Sistem Informasi</td>
+            <td>
+              <time datetime="2024-08">Agustus 2024</time>
+              &ndash;
+              Sekarang
+            </td>
+          </tr>
+          <tr>
+            <td>SMA</td>
+            <td>SMA Negeri 18 Surabaya</td>
+            <td>MIPA (Matematika & Ilmu Pengetahuan Alam)</td>
+            <td>
+              <time datetime="2021-08">Agustus 2021</time>
+              &ndash;
+              <time datetime="2024-07">Juli 2024</time>
+            </td>
+          </tr>
+          <tr>
+            <td>SMP</td>
+            <td>SMP Negeri 32 Surabaya</td>
+            <td>&mdash;</td>
+            <td>
+              <time datetime="2018-08">Agustus 2018</time>
+              &ndash;
+              <time datetime="2021-07">Juli 2021</time>
+            </td>
+          </tr>
+        </tbody>
+ 
+      </table>
+ 
+    </section>
+ 
+    <section id="keahlian" aria-labelledby="heading-keahlian">
+      <h2 id="heading-keahlian">Keahlian Teknis</h2>
+ 
+      <article class="kategori-keahlian">
+        <h3>Bahasa Pemrograman &amp; Markup</h3>
+        <ul>
+          <li>
+            HTML5 &amp; CSS3
+            <meter value="0.3" min="0" max="1">30%</meter>
+          </li>
+          <li>
+            Python
+            <meter value="0.4" min="0" max="1">40%</meter>
+          </li>
+          <li>
+            Java
+            <meter value="0.20" min="0" max="1">20%</meter>
+          </li>
+        </ul>
+      </article>
+ 
+      <article class="kategori-keahlian">
+        <br>
+        <h3>Alat &amp; Platform</h3>
+        <ul>
+          <li>GitHub (Version Control)</li>
+          <li>XAMPP</li>
+          <li>Visual Studio Code</li>
+          <li>Figma (UI/UX Design)</li>
+        </ul>
+      </article>
+ 
+    </section>
+ 
+    <section id="proyek" aria-labelledby="heading-proyek">
+      <h2 id="heading-proyek">Proyek &amp; Portofolio</h2>
+ 
+      <ol>
+ 
+        <li>
+          <article>
+            <h3>Greenlink</h3>
+            <p style="text-align: justify;">
+              Marketplace jasa dan produk lingkungan berbasis web yang dirancang untuk menghubungkan penyedia solusi ramah lingkungan dengan masyarakat yang membutuhkan. 
+              Sistem ini memungkinkan vendor untuk menawarkan produk eco-friendly maupun jasa berbasis keberlanjutan, seperti layanan daur ulang, konsultasi lingkungan, 
+              atau pengelolaan limbah, sementara pengguna dapat mencari, memilih, dan melakukan transaksi secara online melalui satu platform terintegrasi. 
+            </p>
+            <p><br><strong>Teknologi:</strong></p>
+            <ul>
+              <li>HTML5 &amp; CSS3</li>
+              <li>MySQL</li>
+              <li>LocalStorage API</li>
+            </ul>
+            <p>
+              <a href="https://github.com/username/nama-repo"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Lihat di GitHub
+              </a>
+            </p>
+          </article>
+        </li>
+ 
+      </ol>
+ 
+    </section>
+
+    <section id="organisasi" aria-labelledby="heading-organisasi">
+      <h2 id="heading-organisasi">Pengalaman Organisasi</h2>
+ 
+      <ul>
+        <li>
+          <strong>Ketua Bidang Public Relation</strong> &mdash;
+          HIMSI
+          (<time datetime="2026">2026</time> &ndash; Sekarang)
+        </li>
+        <li>
+          <strong>Staff Muda Public Relation</strong> &mdash;
+          HIMSI
+          (<time datetime="2025">2025</time>)
+        </li>
+      </ul>
+ 
+    </section>
+ 
+    <section>
+      <h2>Sertifikasi &amp; Penghargaan</h2>
+      <ul>
+        <li>
+          Staff Terbaik PR Kuartal Terakhir &mdash;
+          <cite>HIMSI</cite>,
+          <time datetime="2025">2025</time>
+        </li>
+        <li>
+          Code Generations and Optimization &mdash;
+          <cite>Hacktiv8 Indonesia X IBM SkillsBuild</cite>,
+          <time datetime="2025">2025</time>
+        </li>
+      </ul>
+    </section>
+
+     <section>
+      <h2>Media Sosial &amp; Kontak</h2>
+      <ul>
+        <li>
+          <a href="mailto:dwimaulidan06@gmail.com">
+            &#x2709; dwimaulidan06@gmail.com
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/Immanuel1401"
+             target="_blank" rel="noopener noreferrer">
+            GitHub: @Immanuel1401
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/dwi-maulidan-507681312?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+             target="_blank" rel="noopener noreferrer">
+            LinkedIn: linkedin.com/in/dwi-maulidan
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+ 
+  </aside>
+  <footer id="kontak" role="contentinfo">
+ 
+    <p>
+      Dibuat untuk memenuhi tugas Pemrograman Web
+    </p>
+ 
+    <p>
+      Dwi Maulidan - 187241006 - I1
+    </p>
+
+  </footer>
+ 
+</body>
+</html>

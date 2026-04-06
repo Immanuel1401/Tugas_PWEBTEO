@@ -1,0 +1,180 @@
+/* Konfigurasi Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.container-bg {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #E8F5E9, #F1F8E9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Kartu Utama */
+.register-card {
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Sisi Kiri (Branding) */
+.branding-side {
+    background: linear-gradient(to bottom right, #2E7D32, #388E3C);
+    padding: 3rem;
+    color: white;
+    display: flex;
+    flex-col: column;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.brand-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.branding-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.benefits-list {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.8rem;
+}
+
+/* Sisi Kanan (Form) */
+.form-side {
+    padding: 3rem;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+}
+
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.role-btn {
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.role-btn.active {
+    border-color: #2E7D32;
+    background: #E8F5E9;
+}
+
+.role-btn span {
+    display: block;
+    font-size: 0.75rem;
+    color: #4a5568;
+}
+
+/* Input Styles */
+.inputs-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.field label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 10px;
+    color: #a0aec0;
+    width: 18px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: #2E7D32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.login-prompt {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.login-prompt a {
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+    .branding-side {
+        padding: 2rem;
+    }
+}

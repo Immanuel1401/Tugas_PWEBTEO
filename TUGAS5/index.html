@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLink Dashboard — Flexbox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========= TOPBAR ========= -->
+    <!-- Layout: CSS Flexbox row, space-between -->
+    <header class="topbar anim-slide-down">
+        <div class="topbar-left">
+            <a href="#" class="brand">
+                <div class="brand-icon">
+                    <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+                        <path d="M14.667 26.667c-2.342.007-4.6-.866-6.328-2.446C6.612 22.64 5.541 20.469 5.34 18.136c-.202-2.332.482-4.655 1.913-6.508C8.683 9.775 10.759 8.528 13.067 8.133c7.6-1.467 9.6-2.16 12.266-5.467 1.334 2.667 2.667 5.573 2.667 10.667 0 7.333-6.373 13.333-13.333 13.333z" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.667 28c0-4 2.466-7.147 6.773-8C12.667 19.36 16 17.333 17.333 16" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="brand-name">GreenLink</span>
+            </a>
+        </div>
+
+        <div class="topbar-center">
+            <div class="search-box">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Cari produk eco-friendly...">
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <button class="icon-btn pos-rel">
+                <i class="bi bi-bell"></i>
+                <span class="pulse-dot"></span>
+            </button>
+            <button class="icon-btn pos-rel">
+                <i class="bi bi-bag"></i>
+                <span class="badge-count">2</span>
+            </button>
+            <div class="user-chip">
+                <div class="user-avatar">A</div>
+                <div class="user-info">
+                    <span class="user-name">Dwi Maulidan</span>
+                    <span class="user-tier">Premium</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========= PAGE WRAPPER: Flexbox row ========= -->
+    <div class="page-wrapper">
+
+        <!-- ========= SIDEBAR ========= -->
+        <!-- Layout: Flexbox column, justify space-between -->
+        <aside class="sidebar anim-slide-right">
+            <div class="sidebar-top">
+                <p class="nav-section-label">NAVIGASI</p>
+                <nav>
+                    <a href="#" class="nav-item nav-item--active">
+                        <span class="nav-item-icon"><i class="bi bi-grid-1x2-fill"></i></span>
+                        <span class="nav-item-text">Dashboard</span>
+                        <span class="nav-item-dot"></span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-item-icon"><i class="bi bi-shop"></i></span>
+                        <span class="nav-item-text">Produk</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-item-icon"><i class="bi bi-box-seam"></i></span>
+                        <span class="nav-item-text">Pesanan Saya</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-item-icon"><i class="bi bi-heart"></i></span>
+                        <span class="nav-item-text">Wishlist</span>
+                    </a>
+                </nav>
+
+                <p class="nav-section-label" style="margin-top:24px">AKUN</p>
+                <nav>
+                    <a href="#" class="nav-item">
+                        <span class="nav-item-icon"><i class="bi bi-person"></i></span>
+                        <span class="nav-item-text">Profil</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-item-icon"><i class="bi bi-gear"></i></span>
+                        <span class="nav-item-text">Pengaturan</span>
+                    </a>
+                    <a href="#" class="nav-item nav-item--danger">
+                        <span class="nav-item-icon"><i class="bi bi-box-arrow-left"></i></span>
+                        <span class="nav-item-text">Keluar</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Eco Score: Flexbox column -->
+            <div class="eco-card">
+                <div class="eco-card-header">
+                    <span class="eco-icon">🌿</span>
+                    <span class="eco-label">Eco Score Kamu</span>
+                </div>
+                <div class="eco-track">
+                    <div class="eco-fill" style="width:72%"></div>
+                </div>
+                <p class="eco-note">72 / 100 — Pertahankan!</p>
+            </div>
+        </aside>
+
+        <!-- ========= MAIN CONTENT ========= -->
+        <!-- Layout: Flexbox column -->
+        <main class="main">
+
+            <!-- Header: Flexbox row, space-between -->
+            <div class="main-header anim-fade-up" style="--d:0.05s">
+                <div>
+                    <h1 class="main-title">Selamat datang, Dwi! 👋</h1>
+                    <p class="main-sub">Pantau aktivitas belanja berkelanjutan kamu</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-ghost"><i class="bi bi-download"></i> Ekspor</button>
+                    <button class="btn-solid"><i class="bi bi-plus-lg"></i> Pesanan Baru</button>
+                </div>
+            </div>
+
+            <!-- ===== STAT CARDS — Flexbox row, wrap ===== -->
+            <!-- Responsif murni via Flexbox: flex-wrap + flex-basis -->
+            <div class="stats-row anim-fade-up" style="--d:0.15s">
+                <div class="stat-card stat-card--green">
+                    <div class="stat-card-body">
+                        <span class="stat-label">Total Pesanan</span>
+                        <span class="stat-val counter" data-to="24">0</span>
+                        <span class="stat-trend up"><i class="bi bi-arrow-up-short"></i>12% vs bulan lalu</span>
+                    </div>
+                    <div class="stat-card-icon"><i class="bi bi-bag-heart-fill"></i></div>
+                </div>
+                <div class="stat-card stat-card--amber">
+                    <div class="stat-card-body">
+                        <span class="stat-label">Pesanan Aktif</span>
+                        <span class="stat-val counter" data-to="3">0</span>
+                        <span class="stat-trend neutral"><i class="bi bi-clock"></i> Sedang diproses</span>
+                    </div>
+                    <div class="stat-card-icon"><i class="bi bi-hourglass-split"></i></div>
+                </div>
+                <div class="stat-card stat-card--blue">
+                    <div class="stat-card-body">
+                        <span class="stat-label">Selesai</span>
+                        <span class="stat-val counter" data-to="21">0</span>
+                        <span class="stat-trend up"><i class="bi bi-arrow-up-short"></i>8% vs bulan lalu</span>
+                    </div>
+                    <div class="stat-card-icon"><i class="bi bi-patch-check-fill"></i></div>
+                </div>
+                <div class="stat-card stat-card--purple">
+                    <div class="stat-card-body">
+                        <span class="stat-label">Total Belanja</span>
+                        <span class="stat-val">Rp 695K</span>
+                        <span class="stat-trend down"><i class="bi bi-arrow-down-short"></i>4% vs bulan lalu</span>
+                    </div>
+                    <div class="stat-card-icon"><i class="bi bi-wallet2"></i></div>
+                </div>
+            </div>
+
+            <!-- ===== BOTTOM SECTION — Flexbox row ===== -->
+            <div class="bottom-section anim-fade-up" style="--d:0.25s">
+
+                <!-- Orders Table -->
+                <div class="orders-card">
+                    <div class="card-head">
+                        <div>
+                            <h3 class="card-title">Pesanan Terkini</h3>
+                            <p class="card-sub">3 transaksi terbaru</p>
+                        </div>
+                        <a href="#" class="link-all">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                    <div class="table-scroll">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tanggal</th>
+                                    <th>Produk</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="trow-anim">
+                                    <td><code class="oid">#001</code></td>
+                                    <td>28 Feb 2026</td>
+                                    <td><span class="prod-name">🌿 Bamboo Toothbrush</span></td>
+                                    <td><strong>Rp 335.000</strong></td>
+                                    <td><span class="badge badge--done">Selesai</span></td>
+                                </tr>
+                                <tr class="trow-anim">
+                                    <td><code class="oid">#002</code></td>
+                                    <td>01 Mar 2026</td>
+                                    <td><span class="prod-name">♻️ Reusable Bag Pack</span></td>
+                                    <td><strong>Rp 275.000</strong></td>
+                                    <td><span class="badge badge--ship">Dikirim</span></td>
+                                </tr>
+                                <tr class="trow-anim">
+                                    <td><code class="oid">#003</code></td>
+                                    <td>02 Mar 2026</td>
+                                    <td><span class="prod-name">🌱 Seed Paper Notebook</span></td>
+                                    <td><strong>Rp 85.000</strong></td>
+                                    <td><span class="badge badge--proc">Diproses</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Activity Feed: Flexbox column -->
+                <div class="activity-card">
+                    <div class="card-head">
+                        <div>
+                            <h3 class="card-title">Aktivitas</h3>
+                            <p class="card-sub">7 hari terakhir</p>
+                        </div>
+                    </div>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <span class="dot dot--green"></span>
+                            <div>
+                                <p>Pesanan <b>#001</b> telah selesai</p>
+                                <time>2 hari lalu</time>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <span class="dot dot--blue"></span>
+                            <div>
+                                <p>Pesanan <b>#002</b> sedang dikirim</p>
+                                <time>3 hari lalu</time>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <span class="dot dot--amber"></span>
+                            <div>
+                                <p>Pesanan <b>#003</b> diproses</p>
+                                <time>5 hari lalu</time>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <span class="dot dot--green"></span>
+                            <div>
+                                <p>Eco Score naik ke <b>72</b></p>
+                                <time>6 hari lalu</time>
+                            </div>
+                        </li>
+                        <li class="activity-item activity-item--last">
+                            <span class="dot dot--gray"></span>
+                            <div>
+                                <p>Bergabung sebagai <b>Premium Member</b></p>
+                                <time>7 hari lalu</time>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Counter animation
+        document.querySelectorAll('.counter').forEach(el => {
+            const target = +el.dataset.to;
+            let n = 0;
+            const step = Math.ceil(target / 30);
+            const t = setInterval(() => {
+                n = Math.min(n + step, target);
+                el.textContent = n;
+                if (n >= target) clearInterval(t);
+            }, 50);
+        });
+
+        // Scroll-triggered fade-up via IntersectionObserver
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.anim-fade-up').forEach(el => io.observe(el));
+
+        // Table row stagger
+        document.querySelectorAll('.trow-anim').forEach((r, i) => {
+            r.style.animationDelay = `${0.35 + i * 0.1}s`;
+            r.classList.add('trow-visible');
+        });
+
+        // Nav click
+        document.querySelectorAll('.nav-item').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('nav-item--active'));
+                a.classList.add('nav-item--active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Halaman profil pribadi Dwi Maulidan - Mahasiswa Sistem Informasi yang bersemangat dalam pengembangan web dan teknologi.">
+  <meta name="keywords" content="profil, mahasiswa, web developer, HTML, CSS">
+  <meta name="author" content="Dwi Maulidan">
+  <title>Profil Pribadi | Dwi Maulidan</title>
+  <meta property="og:title" content="Profil Pribadi Dwi Maulidan">
+  <meta property="og:description" content="Halaman profil pribadi mahasiswa Sistem Informasi">
+  <meta property="og:type" content="profile">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blob-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<a href="#konten-utama" class="skip-link">Lewati navigasi, langsung ke konten</a>
+
+<nav aria-label="Navigasi halaman profil">
+  <div class="nav-inner">
+    <div class="nav-logo">DM<span>.dev</span></div>
+    <ul>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#pendidikan">Pendidikan</a></li>
+      <li><a href="#keahlian">Keahlian</a></li>
+      <li><a href="#proyek">Proyek</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="profil-hero">
+    <div class="foto-wrapper">
+      <div class="foto-ring"></div>
+      <div class="foto-ring-mask"></div>
+      <img src="foto-profil.jpg"
+           alt="Foto profil Dwi Maulidan, mahasiswa Sistem Informasi"
+           width="150" height="150"
+           class="foto-profil">
+      <div class="status-badge" title="Aktif"></div>
+    </div>
+    <div class="hero-tag">&#x2022; Open to Collaboration</div>
+    <h1>Dwi Maulidan</h1>
+    <p class="hero-sub">Mahasiswa Sistem Informasi di Universitas Airlangga &mdash; berfokus pada pengembangan antarmuka web yang intuitif dan aksesibel.</p>
+    <div class="hero-chips">
+      <span class="chip chip-blue">HTML &amp; CSS</span>
+      <span class="chip chip-orange">Python</span>
+      <span class="chip chip-green">UI/UX Design</span>
+      <span class="chip chip-blue">GitHub</span>
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:dwimaulidan06@gmail.com" class="btn btn-primary">&#x1F4EC; Hubungi Saya</a>
+      <a href="https://github.com/Immanuel1401" target="_blank" rel="noopener noreferrer" class="btn btn-outline">&#x26A1; GitHub</a>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</header>
+
+<main id="konten-utama">
+
+  <!-- 01 TENTANG -->
+  <section id="tentang" aria-labelledby="heading-tentang">
+    <div class="section-label">01 &mdash; Tentang</div>
+    <h2 class="section-title" id="heading-tentang">Tentang Saya</h2>
+    <div class="card">
+      <div class="tentang-grid">
+        <div class="tentang-text">
+          <p>Halo! Nama saya <strong>Dwi Maulidan</strong>, mahasiswa semester empat Program Studi Sistem Informasi di Universitas Airlangga. Saya memiliki ketertarikan yang besar terhadap dunia pengembangan web, khususnya dalam membangun antarmuka pengguna yang intuitif dan aksesibel.</p>
+          <p>Saat ini saya aktif mempelajari teknologi web modern, mengerjakan proyek-proyek open source, dan berpartisipasi dalam komunitas developer lokal. Saya percaya bahwa <q>kode yang baik adalah kode yang mudah dibaca oleh manusia</q>.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">NIM</span>
+            <span class="info-value">187241006</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Angkatan</span>
+            <span class="info-value">2024</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Status</span>
+            <span class="info-value status-aktif">&#x25CF; Aktif &mdash; Sem. Genap 2025/2026</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Universitas</span>
+            <span class="info-value">Universitas Airlangga</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 PENDIDIKAN -->
+  <section id="pendidikan" aria-labelledby="heading-pendidikan">
+    <div class="section-label">02 &mdash; Pendidikan</div>
+    <h2 class="section-title" id="heading-pendidikan">Riwayat Pendidikan</h2>
+    <div class="table-wrapper">
+      <table>
+        <caption>Data Riwayat Pendidikan Formal</caption>
+        <thead>
+          <tr>
+            <th scope="col">Jenjang</th>
+            <th scope="col">Nama Institusi</th>
+            <th scope="col">Jurusan / Program Studi</th>
+            <th scope="col">Periode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="chip chip-blue">S1</span></td>
+            <td>Universitas Airlangga</td>
+            <td>Sistem Informasi</td>
+            <td><time datetime="2024-08">Agustus 2024</time> &ndash; Sekarang</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-orange">SMA</span></td>
+            <td>SMA Negeri 18 Surabaya</td>
+            <td>MIPA</td>
+            <td><time datetime="2021-08">2021</time> &ndash; <time datetime="2024-07">2024</time></td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-green">SMP</span></td>
+            <td>SMP Negeri 32 Surabaya</td>
+            <td>&mdash;</td>
+            <td><time datetime="2018-08">2018</time> &ndash; <time datetime="2021-07">2021</time></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 03 KEAHLIAN -->
+  <section id="keahlian" aria-labelledby="heading-keahlian">
+    <div class="section-label">03 &mdash; Keahlian</div>
+    <h2 class="section-title" id="heading-keahlian">Keahlian Teknis</h2>
+    <div class="card">
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Bahasa &amp; Markup</h3>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">HTML5 &amp; CSS3</span>
+              <span class="skill-pct">30%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-width="30"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Python</span>
+              <span class="skill-pct">40%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-width="40"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Java</span>
+              <span class="skill-pct">20%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-width="20"></div></div>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Alat &amp; Platform</h3>
+          <div class="tools-list">
+            <span class="tool-tag">GitHub</span>
+            <span class="tool-tag">XAMPP</span>
+            <span class="tool-tag">VS Code</span>
+            <span class="tool-tag">Figma</span>
+            <span class="tool-tag">MySQL</span>
+            <span class="tool-tag">LocalStorage API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PROYEK -->
+  <section id="proyek" aria-labelledby="heading-proyek">
+    <div class="section-label">04 &mdash; Proyek</div>
+    <h2 class="section-title" id="heading-proyek">Proyek &amp; Portofolio</h2>
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <h3>Greenlink</h3>
+      <p>Marketplace jasa dan produk lingkungan berbasis web yang dirancang untuk menghubungkan penyedia solusi ramah lingkungan dengan masyarakat yang membutuhkan. Sistem ini memungkinkan vendor untuk menawarkan produk eco-friendly maupun jasa berbasis keberlanjutan, seperti layanan daur ulang, konsultasi lingkungan, atau pengelolaan limbah, sementara pengguna dapat mencari, memilih, dan melakukan transaksi secara online melalui satu platform terintegrasi.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">LocalStorage API</span>
+      </div>
+      <a href="https://github.com/Immanuel1401" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        Lihat di GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- 05 ORGANISASI -->
+  <section id="organisasi" aria-labelledby="heading-organisasi">
+    <div class="section-label">05 &mdash; Organisasi</div>
+    <h2 class="section-title" id="heading-organisasi">Pengalaman Organisasi</h2>
+    <div class="org-list">
+      <div class="org-item">
+        <div class="org-icon">&#x1F3DB;</div>
+        <div class="org-info">
+          <h3>Ketua Bidang Public Relation</h3>
+          <p>HIMSI &mdash; Himpunan Mahasiswa Sistem Informasi</p>
+        </div>
+        <span class="org-year"><time datetime="2026">2026</time> &ndash; Sekarang</span>
+      </div>
+      <div class="org-item">
+        <div class="org-icon">&#x1F4E2;</div>
+        <div class="org-info">
+          <h3>Staff Muda Public Relation</h3>
+          <p>HIMSI &mdash; Himpunan Mahasiswa Sistem Informasi</p>
+        </div>
+        <span class="org-year"><time datetime="2025">2025</time></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 SERTIFIKASI -->
+  <section aria-labelledby="heading-sertifikasi">
+    <div class="section-label">06 &mdash; Sertifikasi</div>
+    <h2 class="section-title" id="heading-sertifikasi">Sertifikasi &amp; Penghargaan</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">&#x1F3C6;</div>
+        <div class="cert-info">
+          <h3>Staff Terbaik PR Kuartal Terakhir</h3>
+          <p><cite>HIMSI</cite> &mdash; <time datetime="2025">2025</time></p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#x1F393;</div>
+        <div class="cert-info">
+          <h3>Code Generations and Optimization</h3>
+          <p><cite>Hacktiv8 Indonesia &times; IBM SkillsBuild</cite> &mdash; <time datetime="2025">2025</time></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 KONTAK -->
+  <section id="kontak" aria-labelledby="heading-kontak">
+    <div class="section-label">07 &mdash; Kontak</div>
+    <h2 class="section-title" id="heading-kontak">Media Sosial &amp; Kontak</h2>
+    <div class="kontak-grid">
+      <a href="mailto:dwimaulidan06@gmail.com" class="kontak-card">
+        <div class="kontak-icon kontak-icon-email">&#x2709;</div>
+        <div class="kontak-label">Email</div>
+        <div class="kontak-value">dwimaulidan06@gmail.com</div>
+      </a>
+      <a href="https://github.com/Immanuel1401" target="_blank" rel="noopener noreferrer" class="kontak-card">
+        <div class="kontak-icon kontak-icon-github">&#x26A1;</div>
+        <div class="kontak-label">GitHub</div>
+        <div class="kontak-value">@Immanuel1401</div>
+      </a>
+      <a href="https://www.linkedin.com/in/dwi-maulidan-507681312" target="_blank" rel="noopener noreferrer" class="kontak-card">
+        <div class="kontak-icon kontak-icon-linkedin">&#x1F4BC;</div>
+        <div class="kontak-label">LinkedIn</div>
+        <div class="kontak-value">dwi-maulidan</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-logo">DM.dev</div>
+  <p class="footer-sub">Dibuat untuk memenuhi tugas Pemrograman Web &mdash; <span>Dwi Maulidan</span> / 187241006 / I1</p>
+</footer>
+
+<script>
+  // CUSTOM CURSOR
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animateCursor() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    dot.style.transform  = 'translate(' + (mx - 4)  + 'px,' + (my - 4)  + 'px)';
+    ring.style.transform = 'translate(' + (rx - 16) + 'px,' + (ry - 16) + 'px)';
+    requestAnimationFrame(animateCursor);
+  })();
+
+  // SCROLL REVEAL + SKILL BARS
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('.skill-bar').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('section').forEach(s => revealObs.observe(s));
+
+  // ACTIVE NAV
+  const navLinks  = document.querySelectorAll('nav ul li a');
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const lnk = document.querySelector('nav a[href="#' + e.target.id + '"]');
+        if (lnk) lnk.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
+</script>
+
+</body>
+</html>
+
